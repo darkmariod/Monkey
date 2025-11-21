@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% block title %}Barberos{% endblock %}
+
+{% block content %}
+
+<a href="javascript:history.back()" class="link-back">← Volver</a>
+
+<h1 class="services-title">Elige tu barbero</h1>
+<p class="subtitle">Sede: <strong>{{ branch_key }}</strong></p>
+
+<div class="barbers-grid">
+  {% for b in barberos %}
+  <div class="barber-card">
+    <div class="barber-avatar">
+      <span class="barber-initial">{{ b.nombre[0] }}</span>
+    </div>
+    <div class="barber-info">
+      <h3 class="barber-name">{{ b.nombre }}</h3>
+      <p class="barber-role">Barbero profesional</p>
+    </div>
+    <a href="{{ url_for('booking', barber_id=b.id, service_id=servicio.id, branch=branch_key) }}"
+       class="btn-primary btn-sm">
+      Seleccionar
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% if not barberos %}
+<p class="subtitle">Pronto agregaremos barberos para esta sede.</p>
+{% endif %}
+
+{% endblock %}

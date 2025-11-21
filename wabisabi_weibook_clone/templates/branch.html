@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+{% block title %}{{ branch.name }}{% endblock %}
+
+{% block content %}
+
+<section class="branch-layout">
+  <div class="branch-card">
+    <div class="branch-heart">❤</div>
+    <h1 class="branch-name">{{ branch.name }}</h1>
+    <p class="branch-address">{{ branch.address }}</p>
+
+    <div class="branch-rating">
+      <span class="stars">★★★★★</span>
+      <span class="rating-text">{{ branch.rating }} Excellent · {{ branch.reviews }} reseñas</span>
+    </div>
+
+    <a href="{{ url_for('services', branch_id=branch.id) }}" class="btn-primary">
+      Reservar ahora
+    </a>
+
+    <div class="branch-meta">Barbería</div>
+  </div>
+
+  <div class="branch-hero">
+    <div class="hero-image">
+      <span class="hero-placeholder">{{ branch.hero_text }}</span>
+    </div>
+    <div class="hero-dots">
+      <span class="dot dot-active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<section style="margin-top: 40px;">
+  <h2 class="services-title">Otras sedes</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;">
+    {% for b in branches if b.id != branch.id %}
+    <div class="branch-card">
+      <div class="branch-heart">❤</div>
+      <h3 class="branch-name">{{ b.name }}</h3>
+      <p class="branch-address">{{ b.address }}</p>
+      <div class="branch-rating">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text">{{ b.rating }} Excellent · {{ b.reviews }} reviews</span>
+      </div>
+      <a href="{{ url_for('services', branch_id=b.id) }}" class="btn-primary btn-sm">Reservar ahora</a>
+      <div class="branch-meta">Barbería</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
