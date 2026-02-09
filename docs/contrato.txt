@@ -1,5 +1,0 @@
-Contrato de desarrollo para un sitio web de astralab
-    - Tres secciones
-    - Botón para donaciones
-    - Dominio paga cliente
-    - Contrato Final detallado por subir
